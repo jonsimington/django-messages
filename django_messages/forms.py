@@ -29,7 +29,7 @@ class ComposeForm(forms.Form):
     
                 
     def save(self, sender, parent_msg=None):
-        recipients = self.cleaned_data['recipient'].title()
+        recipients = self.cleaned_data['recipient']
         subject = self.cleaned_data['subject']
         body = self.cleaned_data['body']
         message_list = []
