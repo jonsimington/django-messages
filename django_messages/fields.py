@@ -37,7 +37,7 @@ class CommaSeparatedUserField(forms.Field):
         if not value:
             return ''
         if isinstance(value, (list, tuple)):
-            return value.title()
+            return value
         
         names = set(value.split(','))
         names_set = set([name.strip() for name in names if name.strip()])
@@ -51,10 +51,7 @@ class CommaSeparatedUserField(forms.Field):
                 if recipient_filter(r) is False:
                     users.remove(r)
                     invalid_users.append(getattr(r, get_username_field()))
-        
-        if unknown_names or invalid_users:
-            raise forms.ValidationError(_(u"The following usernames are incorrect: %(users)s") % {'users': ', '.join(list(unknown_names)+invalid_users)})
-        
+                    
         return users
 
 
